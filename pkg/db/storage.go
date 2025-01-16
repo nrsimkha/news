@@ -9,8 +9,22 @@ type Post struct {
 	Link    string // ссылка на источник
 }
 
+// Объект пагинации
+type Pagination struct {
+	TotalPages   int
+	CurrentPage  int
+	PostsPerPage int
+}
+
+// Объект постов с пагинацией
+type PostsWithPagination struct {
+	Posts      []Post
+	Pagination Pagination
+}
+
 // Interface задаёт контракт на работу с БД.
 type Interface interface {
-	News(int) ([]Post, error) // получение всех публикаций
-	AddNews([]Post) error     // создание новой публикации
+	News(int, int, string) (*PostsWithPagination, error) // получение всех публикаций
+	AddNews([]Post) (*int, error)                        // создание новой публикации
+	NewsByID(int) (*Post, error)                         // получение развернутой публикации по ID
 }

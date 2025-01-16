@@ -17,12 +17,19 @@ func New() *DB {
 	return new(DB)
 }
 
-func (db *DB) News(int) ([]storage.Post, error) {
-	return news, nil
+func (db *DB) News(int, int, string) (*storage.PostsWithPagination, error) {
+	return &storage.PostsWithPagination{
+		Posts:      news,
+		Pagination: storage.Pagination{},
+	}, nil
 }
 
-func (db *DB) AddNews([]storage.Post) error {
-	return nil
+func (db *DB) AddNews([]storage.Post) (*int, error) {
+	return nil, nil
+}
+
+func (db *DB) NewsByID(int) (*storage.Post, error) {
+	return &news[0], nil
 }
 
 var news = []storage.Post{

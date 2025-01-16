@@ -3,6 +3,6 @@ CREATE TABLE news (
     ID SERIAL PRIMARY KEY,
     Title TEXT NOT NULL,
     Content TEXT NOT NULL,
-    PubTime INTEGER DEFAULT 0,
-    Link TEXT NOT NULL UNIQUE
+    PubTime INTEGER,
+    Link TEXT
 );
